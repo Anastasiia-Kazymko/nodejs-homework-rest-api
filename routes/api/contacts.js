@@ -1,4 +1,3 @@
-const { request } = require("express");
 const express = require("express");
 
 const ctrl = require("../../controllers/contacts");
@@ -13,11 +12,11 @@ const router = express.Router();
 
 router.get("/", ctrlWrapper(ctrl.getAll));
 
-router.get("/:Id", ctrlWrapper(ctrl.getById));
+router.get("/:id", ctrlWrapper(ctrl.getById));
 
 router.post("/", validateBody(schema.addSchema), ctrlWrapper(ctrl.add));
 
-router.delete("/:Id", ctrlWrapper(ctrl.removeById));
+router.delete("/:id", ctrlWrapper(ctrl.removeById));
 
 router.put(
   "/:Id",
