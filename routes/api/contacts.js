@@ -4,7 +4,7 @@ const ctrl = require("../../controllers/contacts");
 
 const { validateBody } = require("../../middlewares");
 
-const schema = require("../../schemas/contacts");
+const { schemas } = require("../../models/contactsSchema");
 
 const { ctrlWrapper } = require("../../helpers");
 
@@ -14,13 +14,19 @@ router.get("/", ctrlWrapper(ctrl.getAll));
 
 router.get("/:id", ctrlWrapper(ctrl.getById));
 
-router.post("/", validateBody(schema.addSchema), ctrlWrapper(ctrl.add));
+router.post("/", validateBody(schemas.addSchema), ctrlWrapper(ctrl.add));
 
 router.delete("/:id", ctrlWrapper(ctrl.removeById));
 
+router.patch(
+  "/:id/favorite",
+  validateBody(schemas.updateFavoriteSchema),
+  ctrlWrapper(ctrl.updateFavorite)
+);
+
 router.put(
-  "/:Id",
-  validateBody(schema.addSchema),
+  "/:id",
+  validateBody(schemas.addSchema),
   ctrlWrapper(ctrl.updateById)
 );
 
