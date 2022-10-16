@@ -2,13 +2,13 @@ const { Contact } = require("../../models/contactsSchema");
 
 const { RequestError } = require("../../helpers");
 
-const removeById = async (req, res) => {
+const updateFavorite = async (req, res) => {
   const { id } = req.params;
-  const result = await Contact.findByIdAndRemove(id);
+  const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw RequestError(404, "Not found");
   }
-  res.json({ message: "Сontact deleted" });
+  res.status(200).json(result);
 };
 
-module.exports = removeById;
+module.exports = updateFavorite;
