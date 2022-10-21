@@ -5,7 +5,6 @@ const { RequestError } = require("../../helpers");
 const getById = async (req, res) => {
   const { id } = req.params;
   console.log(req.params);
-  /* const result = await Contact.findOne({ _id: id }); */
   const result = await Contact.findById(id);
   if (!result) {
     throw RequestError(404, "Not found");
