@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 
 const { User } = require("../../models/userSchema");
-
 const { RequestError } = require("../../helpers");
 
 const signup = async (req, res) => {
@@ -12,13 +11,13 @@ const signup = async (req, res) => {
   }
   const hashPassword = await bcrypt.hash(password, 10);
   const result = await User.create({
-    subscription,
     email,
     password: hashPassword,
+    subscription,
   });
   res.status(201).json({
     email: result.email,
-    subscription: result.subscription,
+    subscription: "starter",
   });
 };
 
