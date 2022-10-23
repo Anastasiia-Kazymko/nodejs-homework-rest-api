@@ -17,7 +17,7 @@ const signup = async (req, res) => {
   });
   res.status(201).json({
     email: result.email,
-    subscription: "starter",
+    subscription: result.subscription,
   });
 };
 
